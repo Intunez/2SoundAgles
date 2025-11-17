@@ -1,1 +1,84 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Introfilmpje</title>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+    }
 
+    video {
+      max-width: 90%;
+      height: auto;
+      background: #000;
+      margin-top: 20px;
+    }
+
+    #skipButton {
+      margin-top: 20px;
+      padding: 12px 24px;
+      font-size: 18px;
+      background: #ffffff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #skipButton:hover {
+      background: #e6e6e6;
+    }
+  </style>
+</head>
+<body>
+<body>
+<div class="nav-buttons" style="
+  display:flex;
+  gap:10px;
+  padding:15px;
+  background:#2e104b;
+  border-bottom:2px solid #ff4fd6;
+">
+  <a href="intro.html" style="color:white; text-decoration:none; font-weight:bold;">⬅ Intro</a>
+  <a href="level1.html" style="color:white; text-decoration:none; font-weight:bold;">Level 1</a>
+  <a href="level2.html" style="color:white; text-decoration:none; font-weight:bold;">Level 2</a>
+</div>
+
+<div class="page">
+  <!-- hier begint je bestaande inhoud -->
+
+<h2>Welkom bij Soundangles!</h2>
+<p>Je kunt het introfilmpje bekijken of meteen doorgaan naar het spel.</p>
+
+<!-- Je mp4-bestand (zorg dat intro.mp4 in dezelfde map staat als intro.html) -->
+<video id="introVideo" src="intro.mp4" controls></video>
+
+<!-- Altijd werkende knop om verder te gaan -->
+<button id="skipButton">Ga verder naar het spel</button>
+
+<script>
+  const video = document.getElementById('introVideo');
+  const skipButton = document.getElementById('skipButton');
+
+  // Automatisch doorgaan na de video
+  video.addEventListener('ended', () => {
+    window.location.href = 'home.html';
+  });
+
+  // Handmatige doorgaan knop
+  skipButton.addEventListener('click', () => {
+    window.location.href = 'home.html';
+  });
+</script>
+
+</body>
+</html>
