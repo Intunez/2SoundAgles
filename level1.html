@@ -367,10 +367,12 @@
     scoreText.textContent = "Score: " + score;
     if (currentIndex < questions.length - 1) {
       nextBtn.disabled = false;
-    } else {
-      nextBtn.disabled = true;
-      questionText.textContent += " (Laatste vraag)";
-    }
+    else {
+  nextBtn.disabled = true;
+  questionText.textContent += " (Laatste vraag)";
+  setTimeout(() => finishLevel1(), 2000);  // 2 seconden wachten
+}
+
   }
 
   btnBinnen.addEventListener("click", () => handleAnswer("binnen"));
