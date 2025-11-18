@@ -13,7 +13,7 @@
     }
 
     body {
-      font-family: "Nunito", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-family: "Nunito", system-ui, sans-serif;
       background: radial-gradient(circle at top, #34114d, #120021 60%);
       color: #fff;
       min-height: 100vh;
@@ -21,25 +21,45 @@
       flex-direction: column;
     }
 
-    /* NAVIGATIEBALK BOVENAAN */
+    /* ============================================================
+       GROTE AFBEELDING BOVENAAN — NIEUWE NAAM
+       ============================================================ */
+    .hero-image-section {
+      position: relative;
+      width: 100%;
+      height: 350px;
+      overflow: hidden;
+    }
+
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom,
+        rgba(0,0,0,0.15),
+        rgba(0,0,0,0.75)
+      );
+    }
+
+    /* ============================================================
+       NAVIGATIEBALK BOVENOP DE FOTO
+       ============================================================ */
     .nav-buttons {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 30px;
-
-  /* meer hoogte zodat je de foto ziet */
-  padding: 60px 20px 30px;
-
-  /* foto + donkere waas eroverheen */
-  background:
-    linear-gradient(to bottom, rgba(10, 0, 25, 0.15), rgba(10, 0, 25, 0.9)),
-    url("images/podium_lay_out.png") center/cover no-repeat;
-
-  border-bottom: 3px solid #ff4fd6;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
-}
-
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 30px;
+      z-index: 5;
+    }
 
     .nav-buttons a {
       font-size: 20px;
@@ -49,7 +69,6 @@
       background: rgba(18, 0, 40, 0.78);
       padding: 10px 26px;
       border-radius: 999px;
-      letter-spacing: 0.5px;
       transition: 0.2s ease;
     }
 
@@ -58,7 +77,9 @@
       transform: translateY(-2px) scale(1.04);
     }
 
-    /* MIDDENDEEL (WELKOMTEKST) */
+    /* ============================================================
+       WELKOM KAART
+       ============================================================ */
     main {
       flex: 1;
       display: flex;
@@ -139,16 +160,24 @@
     }
   </style>
 </head>
+
+
 <body>
 
-  <!-- NAVIGATIEBALK -->
-  <div class="nav-buttons">
-    <a href="intro.html">Intro</a>
-    <a href="level1.html">Level 1</a>
-    <a href="level2.html">Level 2</a>
+  <!-- GROTE AFBEELDING -->
+  <div class="hero-image-section">
+    <img src="images/podium_lay_out.png" class="hero-img" alt="Podium afbeelding">
+    <div class="hero-overlay"></div>
+
+    <!-- NAVIGATIE OP DE FOTO -->
+    <div class="nav-buttons">
+      <a href="intro.html">Intro</a>
+      <a href="level1.html">Level 1</a>
+      <a href="level2.html">Level 2</a>
+    </div>
   </div>
 
-  <!-- WELKOMDEEL -->
+  <!-- WELKOMKAART -->
   <main>
     <section class="hero">
       <h1>Welkom bij SoundAngles</h1>
