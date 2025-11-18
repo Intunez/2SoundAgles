@@ -23,14 +23,23 @@
 
     /* NAVIGATIEBALK BOVENAAN */
     .nav-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      padding: 20px;
-      background: url("images/podium_lay_out.png") center/cover no-repeat;
-      border-bottom: 3px solid #ff4fd6;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
-    }
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 30px;
+
+  /* meer hoogte zodat je de foto ziet */
+  padding: 60px 20px 30px;
+
+  /* foto + donkere waas eroverheen */
+  background:
+    linear-gradient(to bottom, rgba(10, 0, 25, 0.15), rgba(10, 0, 25, 0.9)),
+    url("images/podium_lay_out.png") center/cover no-repeat;
+
+  border-bottom: 3px solid #ff4fd6;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+}
+
 
     .nav-buttons a {
       font-size: 20px;
