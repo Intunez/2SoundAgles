@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="nl">
 <head>
@@ -19,6 +18,21 @@
       font-family:"Nunito",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Inter,Arial,sans-serif;
       color:var(--ink);
       background:radial-gradient(1400px 800px at 70% -10%, var(--bg2) 0%, var(--bg1) 60%);
+    }
+
+    /* Eenvoudige paarse balk bovenaan (zelfde idee als Level 1) */
+    .nav-buttons{
+      display:flex;
+      gap:10px;
+      padding:15px;
+      background:#2e104b;
+      border-bottom:2px solid #ff4fd6;
+      justify-content:center;
+    }
+    .nav-buttons a{
+      color:white;
+      text-decoration:none;
+      font-weight:bold;
     }
 
     /* ===== Concert background layers ===== */
@@ -139,11 +153,6 @@
 
     .fade{animation:fade .3s ease}
     @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-    .pulse{
-      position:absolute;width:24px;height:24px;border-radius:999px;border:2px solid var(--accent);
-      transform:translate(-50%,-50%);pointer-events:none;animation:pulse 1.1s ease-out 2
-    }
-    @keyframes pulse{0%{opacity:.9;box-shadow:0 0 0 0 rgba(255,82,217,.6)}70%{opacity:.3;box-shadow:0 0 0 16px rgba(255,82,217,0)}100%{opacity:0;box-shadow:0 0 0 0 rgba(255,82,217,0)}}
 
     .overlay{position:fixed;inset:0;background:rgba(10,6,18,.88);display:none;align-items:center;justify-content:center;z-index:60}
     .endbox{background:var(--panel);border:1px solid rgba(255,255,255,.12);padding:22px;border-radius:20px;max-width:520px;text-align:center}
@@ -190,17 +199,14 @@
   </style>
 </head>
 <body>
-  <div class="nav-buttons" style="
-  display:flex;
-  gap:10px;
-  padding:15px;
-  background:#2e104b;
-  border-bottom:2px solid #ff4fd6;
-">
-  <a href="intro.html" style="color:white; text-decoration:none; font-weight:bold;">⬅ Intro</a>
-  <a href="level1.html" style="color:white; text-decoration:none; font-weight:bold;">Level 1</a>
-  <a href="level2.html" style="color:white; text-decoration:none; font-weight:bold;">Level 2</a>
-</div>
+
+  <!-- Navigatiebalk -->
+  <div class="nav-buttons">
+    <a href="home.html">Home</a>
+    <a href="intro.html">Intro</a>
+    <a href="level1.html">Level 1</a>
+    <a href="level2.html">Level 2</a>
+  </div>
 
   <div class="bg-layers">
     <svg class="audience" viewBox="0 0 1200 240" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
@@ -366,11 +372,6 @@ function audienceApplause(){
 }
 
 /* ---------- Hoekgegevens ---------- */
-/*
-Labels zoals in level 1:
-A1,A2,A3,A4,B1,B2,B3,B4
-*/
-
 const QUESTIONS = [
   // overeenkomstig
   {a:'A1', b:'B1', type:'corresponding'},
@@ -563,62 +564,15 @@ function playCurrentHint(){
   setTimeout(()=>{ speakerOff(); smokeOff(); }, 8500);
 }
 
-/* ---------- Diagram: twee hoeken highlighten ---------- */
+/* ---------- Diagram: alleen de figuur, geen markeringen ---------- */
 function drawDiagramPair(h1, h2){
-  // Coördinaten van A1–B4 op jouw afbeelding hoeken.png
-  // (eventueel later nog wat bijschuiven)
-  const marks = {
-    A1:{x:170,y:95},  A2:{x:260,y:65},  A3:{x:260,y:125}, A4:{x:330,y:90},
-    B1:{x:210,y:205}, B2:{x:300,y:175}, B3:{x:300,y:235}, B4:{x:370,y:210}
-  };
-
-  const markStr = Object.entries(marks).map(([key,p])=>{
-    const hi = (key === h1 || key === h2);
-    const col = hi ? '#ffb0f0' : '#f8f1ff';
-    const glow = hi ? ' filter="url(#glow)"' : '';
-    const fillAlpha = hi ? 0.28 : 0.06;
-
-    return `
-      <g${glow}>
-        <circle cx="${p.x}" cy="${p.y}" r="22"
-          fill="rgba(255,176,240,${fillAlpha})"
-          stroke="${col}" stroke-width="${hi ? 3 : 2}" />
-        <text x="${p.x}" y="${p.y+6}" text-anchor="middle"
-          fill="${col}" font-size="16" font-weight="800">${key}</text>
-      </g>`;
-  }).join('');
-
-  // SVG met JOUW afbeelding als achtergrond
+  // We tonen enkel de figuur; de vraag zegt welke hoeken bedoeld worden.
   diagEl.innerHTML = `
     <svg viewBox="0 0 441 296" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <filter id="glow">
-          <feDropShadow dx="0" dy="0" stdDeviation="4"
-            flood-color="#ff52d9" flood-opacity="0.9"/>
-        </filter>
-      </defs>
-
-      <!-- Achtergrond: hoeken.png -->
       <image href="images/hoeken.png" x="0" y="0" width="441" height="296" />
-
-      ${markStr}
     </svg>
   `;
-
-  // Pulsring op de twee gekozen hoeken
-  [h1, h2].forEach(h => {
-    const pos = marks[h];
-    if (pos){
-      const pulse = document.createElement('div');
-      pulse.className = 'pulse';
-      pulse.style.left = pos.x + 'px';
-      pulse.style.top  = pos.y + 'px';
-      diagEl.appendChild(pulse);
-      setTimeout(() => pulse.remove(), 1400);
-    }
-  });
 }
-
 
 /* ---------- Einde van het level ---------- */
 function finish(){
@@ -638,4 +592,3 @@ resetGame();
 </script>
 </body>
 </html>
-
