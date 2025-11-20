@@ -16,12 +16,19 @@
   margin:0;
   font-family:"Nunito",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Inter,Arial,sans-serif;
   color:var(--ink);
+  
   background:radial-gradient(1400px 800px at 70% -10%, var(--bg2) 0%, var(--bg1) 60%);
+
   display:flex;
-  flex-direction:column;      /* ✅ NAV BOVEN, INHOUD ERONDER */
-  align-items:center;
+  flex-direction:column;   /* NAV BOVEN, INHOUD ERONDER */
+  
+  align-items:center;      /* GEEN vertical centering */
+  justify-content:flex-start;  /* NIET centreren → inhoud komt normaal in beeld */
+
   padding:16px;
+  min-height:100vh;        /* laat de pagina groeien */
 }
+
 
 
     .wrap{
