@@ -8,13 +8,54 @@
       margin: 0;
       background: #000;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      flex-direction: column;      /* Navigatie boven, inhoud eronder */
+      justify-content: flex-start; /* inhoud niet verticaal centreren */
       align-items: center;
       min-height: 100vh;
       font-family: Arial, sans-serif;
       color: white;
       text-align: center;
+    }
+
+    /* Paarse navigatiebalk zoals op het startscherm */
+    .nav-buttons {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 18px 20px;
+      background: linear-gradient(180deg, #2e104b, #1b0733);
+      border-bottom: 3px solid #ff4fd6;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+    }
+
+    .nav-buttons a {
+      font-size: 18px;
+      font-weight: 800;
+      color: #ffffff;
+      text-decoration: none;
+      background: rgba(12, 0, 32, 0.9);
+      padding: 10px 26px;
+      border-radius: 999px;
+      letter-spacing: 0.5px;
+      transition: 0.2s ease;
+    }
+
+    .nav-buttons a:hover {
+      background: #ff4fd6;
+      transform: translateY(-2px) scale(1.04);
+    }
+
+    .page {
+      margin-top: 40px; /* ruimte onder de balk */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+      font-size: 32px;
     }
 
     video {
@@ -40,45 +81,40 @@
   </style>
 </head>
 <body>
-<body>
-<div class="nav-buttons" style="
-  display:flex;
-  gap:10px;
-  padding:15px;
-  background:#2e104b;
-  border-bottom:2px solid #ff4fd6;
-">
-  <a href="intro.html" style="color:white; text-decoration:none; font-weight:bold;">⬅ Intro</a>
-  <a href="level1.html" style="color:white; text-decoration:none; font-weight:bold;">Level 1</a>
-  <a href="level2.html" style="color:white; text-decoration:none; font-weight:bold;">Level 2</a>
-</div>
 
-<div class="page">
-  <!-- hier begint je bestaande inhoud -->
+  <!-- NAVIGATIEBALK -->
+  <div class="nav-buttons">
+    <a href="home.html">Home</a>
+    <a href="intro.html">Intro</a>
+    <a href="level1.html">Level 1</a>
+    <a href="level2.html">Level 2</a>
+  </div>
 
-<h2>Welkom bij Soundangles!</h2>
-<p>Je kunt het introfilmpje bekijken of meteen doorgaan naar het spel.</p>
+  <!-- INHOUD -->
+  <div class="page">
+    <h2>Intro level 1 en level 2</h2>
 
-<!-- Je mp4-bestand (zorg dat intro.mp4 in dezelfde map staat als intro.html) -->
-<video id="introVideo" src="intro.mp4" controls></video>
+    <!-- Je mp4-bestand (intro.mp4 ligt in dezelfde map als intro.html) -->
+    <video id="introVideo" src="intro.mp4" controls></video>
 
-<!-- Altijd werkende knop om verder te gaan -->
-<button id="skipButton">Ga verder naar het spel</button>
+    <!-- Knop om meteen verder te gaan -->
+    <button id="skipButton">Ga verder naar het spel</button>
+  </div>
 
-<script>
-  const video = document.getElementById('introVideo');
-  const skipButton = document.getElementById('skipButton');
+  <script>
+    const video = document.getElementById('introVideo');
+    const skipButton = document.getElementById('skipButton');
 
-  // Automatisch doorgaan na de video
-  video.addEventListener('ended', () => {
-    window.location.href = 'home.html';
-  });
+    // Automatisch doorgaan na de video
+    video.addEventListener('ended', () => {
+      window.location.href = 'home.html';
+    });
 
-  // Handmatige doorgaan knop
-  skipButton.addEventListener('click', () => {
-    window.location.href = 'home.html';
-  });
-</script>
+    // Handmatige doorgaan-knop
+    skipButton.addEventListener('click', () => {
+      window.location.href = 'home.html';
+    });
+  </script>
 
 </body>
 </html>
