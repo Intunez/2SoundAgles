@@ -376,14 +376,18 @@
       }
     }
 
-    scoreText.textContent = "Score: " + score;
+     scoreText.textContent = "Score: " + score;
+
     if (currentIndex < questions.length - 1) {
+      // Er zijn nog vragen
       nextBtn.disabled = false;
-    else {
-  nextBtn.disabled = true;
-  questionText.textContent += " (Laatste vraag)";
-  setTimeout(() => finishLevel1(), 2000);  // 2 seconden wachten
-}
+    } else {
+      // Laatste vraag: knop uitzetten en automatisch naar level 2
+      nextBtn.disabled = true;
+      questionText.textContent += " (Laatste vraag)";
+      setTimeout(() => finishLevel1(), 2000);  // 2 seconden wachten
+    }
+
 
   }
 
